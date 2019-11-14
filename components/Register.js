@@ -17,25 +17,25 @@ export default class Login extends Component {
         return (
             <View style={styles.container}>
                 <View style={{ flex: 1 }}>
-                    <Image style={{ height: 200, width: 200 }} source={require('../resources/images/logo.png')} />
+                    <Image style={styles.logo} source={require('../resources/images/logo.png')} />
 
                 </View>
                 <View style={{ flex: 1 }}>
 
                     <View style={styles.textInputContainer}>
-                        <Ionicons style={styles.icon} name="ios-mail" />
+                        <Image source={require('../resources/icons/ic_mail.png')} style={styles.icon} />
                         <TextInput style={styles.textInput}
                             placeholder="e-mail"
                         />
                     </View>
                     <View style={styles.textInputContainer}>
-                        <Ionicons style={styles.icon} name="md-person" />
+                        <Image source={require('../resources/icons/user.png')} style={styles.icon} />
                         <TextInput style={styles.textInput}
                             placeholder="nombre de usuario"
                         />
                     </View>
                     <View style={styles.textInputContainer}>
-                        <Ionicons style={styles.icon} name="md-lock" />
+                        <Image source={require('../resources/icons/lock2.png')} style={styles.icon} />
                         <TextInput style={styles.textInput}
                             placeholder="contraseña"
                         />
@@ -75,6 +75,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    logo: {
+        marginTop: 50,
+        height: 200,
+        width: 200
+    },
     textColor: {
         color: 'white'
     },
@@ -94,7 +99,9 @@ const styles = StyleSheet.create({
 
     },
     icon: {
-        padding: 10
+        margin: 10,
+        width: 20,
+        height: 20
 
     },
     registrarmeButtonContainer: {

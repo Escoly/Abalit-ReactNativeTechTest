@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, TextInput } from 'react-native';
 
 
 export default class Search extends Component {
@@ -16,7 +16,72 @@ export default class Search extends Component {
 
         return (
             <View style={styles.container}>
-                <Text>Hello from Search</Text>
+                <View style={styles.searchBarContainer}>
+                    <Image style={styles.searchIcon}
+                        source={require('../resources/icons/ic_search.png')}
+                    ></Image>
+                    <TextInput style={styles.searchInput}
+                        placeholder="Buscar..."
+                    />
+                </View>
+                <View style={styles.searchResultsContainer}>
+                    <ScrollView>
+                        <View style={styles.resultContainer}>
+                            <Image style={styles.userIcon}
+                                source={require('../resources/icons/ic_default_user.png')}
+                            />
+                            <View style={styles.userInfoContainer}>
+                                <Text style={styles.userName}> Bradley Knight</Text>
+                                <Text style={styles.userAlias}> @bradknight</Text>
+                            </View>
+                        </View>
+                        <View style={styles.resultContainer}>
+                            <Image style={styles.userIcon}
+                                source={require('../resources/icons/ic_default_user.png')}
+                            />
+                            <View style={styles.userInfoContainer}>
+                                <Text style={styles.userName}> Bradley Knight</Text>
+                                <Text style={styles.userAlias}> @bradknight</Text>
+                            </View>
+                        </View>
+                        <View style={styles.resultContainer}>
+                            <Image style={styles.userIcon}
+                                source={require('../resources/icons/ic_default_user.png')}
+                            />
+                            <View style={styles.userInfoContainer}>
+                                <Text style={styles.userName}> Bradley Knight</Text>
+                                <Text style={styles.userAlias}> @bradknight</Text>
+                            </View>
+                        </View>
+                        <View style={styles.resultContainer}>
+                            <Image style={styles.userIcon}
+                                source={require('../resources/icons/ic_default_user.png')}
+                            />
+                            <View style={styles.userInfoContainer}>
+                                <Text style={styles.userName}> Bradley Knight</Text>
+                                <Text style={styles.userAlias}> @bradknight</Text>
+                            </View>
+                        </View>
+                        <View style={styles.resultContainer}>
+                            <Image style={styles.userIcon}
+                                source={require('../resources/icons/ic_default_user.png')}
+                            />
+                            <View style={styles.userInfoContainer}>
+                                <Text style={styles.userName}> Bradley Knight</Text>
+                                <Text style={styles.userAlias}> @bradknight</Text>
+                            </View>
+                        </View>
+                        <View style={styles.resultContainer}>
+                            <Image style={styles.userIcon}
+                                source={require('../resources/icons/ic_default_user.png')}
+                            />
+                            <View style={styles.userInfoContainer}>
+                                <Text style={styles.userName}> Bradley Knight</Text>
+                                <Text style={styles.userAlias}> @bradknight</Text>
+                            </View>
+                        </View>
+                    </ScrollView>
+                </View>
             </View>
         );
     }
@@ -24,8 +89,48 @@ export default class Search extends Component {
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
         backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
     },
+    searchBarContainer: {
+        flexDirection: 'row',
+        paddingTop: 20,
+        paddingLeft: 20,
+        alignItems: 'center',
+    },
+    searchIcon: {
+        maxHeight: 25,
+        maxWidth: 25
+    },
+    searchInput: {
+        borderBottomColor: 'gray',
+        borderBottomWidth: 1,
+        padding: 5,
+        width: 300,
+        fontSize: 20
+    },
+    searchResultsContainer: {
+        flex: 1,
+        flexDirection: 'column'
+    },
+    resultContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderBottomWidth: 1,
+        borderBottomColor: 'gray',
+        maxHeight: 80
+    },
+    userIcon: {
+        maxHeight: 60,
+        maxWidth: 60,
+        margin: 10
+    },
+    userName: {
+        color: 'gray',
+        fontSize: 15,
+    },
+    userAlias: {
+        color: 'gray'
+    }
 });
