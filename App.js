@@ -12,11 +12,21 @@ import Profile from './components/Profile'
 import Search from './components/Search'
 import Publish from './components/Publish'
 import Notifications from './components/Notifications'
+import Comments from './components/Comments'
+import EditProfile from './components/EditProfile'
+import Settings from './components/Settings'
+import CreatePost from './components/CreatePost'
+
 import Modal from './components/Modal'
 
 
 const homeStack = createStackNavigator({
-  Home: Home
+  Home: {
+    screen: Home
+  },
+  Comments: {
+    screen: Comments
+  }
 })
 
 const searchStack = createStackNavigator({
@@ -24,7 +34,8 @@ const searchStack = createStackNavigator({
 })
 
 const publishStack = createStackNavigator({
-  Publish: Publish
+  Publish: Publish,
+  CreatePost: CreatePost
 })
 
 const notificationsStack = createStackNavigator({
@@ -32,11 +43,13 @@ const notificationsStack = createStackNavigator({
 })
 
 const profileStack = createStackNavigator({
-  Profile: Profile
+  Profile: Profile,
+  EditProfile: EditProfile,
+  Settings: Settings
 })
 
 const TabNavigator = createBottomTabNavigator({
-  Home: {
+  Inicio: {
     screen: homeStack,
     navigationOptions: {
       tabBarIcon: ({ tintColor }) => (
@@ -44,7 +57,7 @@ const TabNavigator = createBottomTabNavigator({
       )
     }
   },
-  Search: {
+  Buscar: {
     screen: searchStack,
     navigationOptions: {
       tabBarIcon: ({ tintColor }) => (
@@ -52,7 +65,7 @@ const TabNavigator = createBottomTabNavigator({
       )
     }
   },
-  Publish: {
+  Publicar: {
     screen: publishStack,
     navigationOptions: {
       tabBarIcon: ({ tintColor }) => (
@@ -60,7 +73,7 @@ const TabNavigator = createBottomTabNavigator({
       )
     }
   },
-  Notifications: {
+  Notificaciones: {
     screen: notificationsStack,
     navigationOptions: {
       tabBarIcon: ({ tintColor }) => (
@@ -68,7 +81,7 @@ const TabNavigator = createBottomTabNavigator({
       )
     }
   },
-  Profile: {
+  Perfil: {
     screen: profileStack,
     navigationOptions: {
       tabBarIcon: ({ tintColor }) => (
@@ -99,7 +112,7 @@ const MainStack = createStackNavigator({
     screen: TabNavigator
   }
 }, {
-  initialRouteName: 'Register',
+  initialRouteName: 'Login',
   headerMode: 'none',
 
 })

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableHighlight } from 'react-native';
 
 
 export default class Publish extends Component {
@@ -29,18 +29,21 @@ export default class Publish extends Component {
                     <Text style={styles.bigButtonText}>Hacer foto</Text>
                 </View>
                 <View style={styles.separatorContainer}>
-                    <View style={styles.separatorSegment}/>
+                    <View style={styles.separatorSegment} />
                     <Text style={styles.separatorText}>  O bien  </Text>
-                    <View style={styles.separatorSegment}/>
+                    <View style={styles.separatorSegment} />
                 </View>
 
-                <View style={styles.bigButtonBorder}>
-                    <Image style={styles.bigButtonIcon}
-                        source={require('../resources/icons/ic_gallery.png')}
-                        title="To Profile"
-                    ></Image>
-                    <Text style={styles.bigButtonText}>Subir foto</Text>
-                </View>
+                <TouchableHighlight
+                    onPress={() => this.props.navigation.navigate('CreatePost')}>
+                    <View style={styles.bigButtonBorder}>
+                        <Image style={styles.bigButtonIcon}
+                            source={require('../resources/icons/ic_gallery.png')}
+                            title="To Profile"
+                        ></Image>
+                        <Text style={styles.bigButtonText}>Subir foto</Text>
+                    </View>
+                </TouchableHighlight>
             </View>
         );
     }
@@ -60,8 +63,8 @@ const styles = StyleSheet.create({
         paddingBottom: 20
     },
     bigButtonBorder: {
-        flexDirection:'row',
-        alignItems:'center',
+        flexDirection: 'row',
+        alignItems: 'center',
         borderRadius: 6,
         borderWidth: 3,
         borderColor: '#00BDD3',
@@ -70,7 +73,7 @@ const styles = StyleSheet.create({
         paddingLeft: 60,
         paddingRight: 60,
         marginTop: 40,
-        marginBottom:40
+        marginBottom: 40
     },
     bigButtonText: {
         color: '#00BDD3',
@@ -82,16 +85,16 @@ const styles = StyleSheet.create({
         height: 50,
         width: 50
     },
-    separatorContainer:{
-        flexDirection:'row',
-        alignItems:'center'
-    },  
-    separatorSegment:{
-        width: 115,
-        borderTopColor:'lightgray',
-        borderTopWidth:1
+    separatorContainer: {
+        flexDirection: 'row',
+        alignItems: 'center'
     },
-    separatorText:{
-        color:'lightgray'
+    separatorSegment: {
+        width: 115,
+        borderTopColor: 'lightgray',
+        borderTopWidth: 1
+    },
+    separatorText: {
+        color: 'lightgray'
     }
 });

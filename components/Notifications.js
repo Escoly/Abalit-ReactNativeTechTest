@@ -138,8 +138,8 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
-        borderBottomWidth: 1,
-        borderBottomColor: 'gray',
+        borderBottomWidth: 0.5,
+        borderBottomColor: 'lightgray',
         maxHeight: 80
     },
     userIcon: {

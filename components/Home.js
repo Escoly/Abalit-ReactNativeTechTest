@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button, Image, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Button, Image, ScrollView, TouchableHighlight, Modal } from 'react-native';
+import ModalComponent from './Modal';
 
 
 export default class Home extends Component {
@@ -11,29 +12,42 @@ export default class Home extends Component {
         },
         headerTintColor: '#fff'
     }
+    state = {
+        modalVisible: false,
+    };
+
+    setModalVisible = () => {
+        const visible = !this.state.modalVisible;
+        console.log(visible)
+        this.setState({ modalVisible: visible });
+    }
+
     render() {
         return (
             <View style={styles.container}>
                 <ScrollView>
                     <View style={styles.userInfoPanel}>
                         <View style={styles.userInfoContainer}>
-                            <View style={styles.userHeader}>
-                                <View
-                                    onPress={
-                                        () => { this.props.navigation.navigate('Profile') }
-                                    }
-                                    style={styles.userInfo}>
-                                    <Image style={{ height: 55, width: 55 }}
-                                        source={require('../resources/icons/ic_default_user.png')}
-                                        title="To Profile"
-                                    ></Image>
-                                    <View style={styles.userInfoNames}>
-                                        <Text style={styles.grayText}>Bruce Miller</Text>
-                                        <Text style={styles.grayText}>@bmiller</Text>
+                            <TouchableHighlight onPress={
+                                () => {
+                                    this.props.navigation.navigate('Profile')
+                                }
+                            }
+                                style={styles.userHeader}>
+                                <View style={styles.userHeader}>
+                                    <View style={styles.userInfo}>
+                                        <Image style={{ height: 55, width: 55 }}
+                                            source={require('../resources/icons/ic_default_user.png')}
+                                            title="To Profile"
+                                        ></Image>
+                                        <View style={styles.userInfoNames}>
+                                            <Text style={styles.grayText}>Bruce Miller</Text>
+                                            <Text style={styles.grayText}>@bmiller</Text>
+                                        </View>
                                     </View>
+                                    <Text style={styles.grayText}>Hace 1 hora</Text>
                                 </View>
-                                <Text style={styles.grayText}>Hace 1 hora</Text>
-                            </View>
+                            </TouchableHighlight>
                         </View>
                         <View style={styles.allPostsContainer}>
                             <View style={styles.postContainer}>
@@ -43,9 +57,23 @@ export default class Home extends Component {
                                 <View style={styles.imageBar}>
                                     <Image style={styles.iconStyle} source={require('../resources/icons/ic_like_empty.png')} />
                                     <Text style={styles.grayText}>0</Text>
-                                    <Image style={styles.iconStyle} source={require('../resources/icons/ic_comment.png')} />
-                                    <Text style={styles.grayText}>0</Text>
-                                    <Image style={styles.moreIcon} source={require('../resources/icons/ic_more.png')} />
+                                    <TouchableHighlight
+                                        onPress={
+                                            () => this.props.navigation.navigate('Comments')
+                                        }>
+                                        <View style={styles.buttonContainer}>
+                                            <Image style={styles.iconStyle} source={require('../resources/icons/ic_comment.png')} />
+                                            <Text style={styles.grayText}>0</Text>
+                                        </View>
+                                    </TouchableHighlight>
+
+                                    <TouchableHighlight
+                                        onPress={
+                                            () => { this.setModalVisible() }
+                                        }
+                                        style={styles.moreIconContainer}>
+                                        <Image style={styles.moreIcon} source={require('../resources/icons/ic_more.png')} />
+                                    </TouchableHighlight>
                                 </View>
                             </View>
                             <View style={styles.imageDesContainer}>
@@ -61,11 +89,15 @@ export default class Home extends Component {
                                 </View>
                             </View>
                         </View>
-
-
                     </View>
-
                 </ScrollView>
+                <Modal
+                    transparent={true}
+                    visible={this.state.modalVisible}>
+                    <View style={styles.modalContainer}>
+                        <ModalComponent onClose={this.setModalVisible} />
+                    </View>
+                </Modal>
             </View>
         );
     }
@@ -87,7 +119,7 @@ const styles = StyleSheet.create({
     userHeader: {
         flex: 1,
         flexDirection: 'row',
-        padding: 10,
+        padding: 5,
         maxHeight: 80
     },
     userInfo: {
@@ -114,11 +146,13 @@ const styles = StyleSheet.create({
         maxWidth: 40,
         margin: 10
     },
+    moreIconContainer: {
+        position: 'absolute',
+        right: 5
+    },
     moreIcon: {
         maxHeight: 40,
         maxWidth: 40,
-        position: 'absolute',
-        right: 5
     },
     imageDesContainer: {
         padding: 10,
@@ -139,6 +173,16 @@ const styles = StyleSheet.create({
     locationIcon: {
         maxHeight: 30,
         maxWidth: 30
+    },
+    modalContainer: {
+        flex: 1,
+        backgroundColor: "rgba(1,1,1,0.5)",
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    buttonContainer: {
+        flexDirection: 'row',
+        alignItems: 'center'
     }
 
 });

@@ -1,16 +1,28 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, Button } from 'react-native';
 
 
 export default class Profile extends Component {
-    static navigationOptions = {
+    static navigationOptions = ({ navigation }) => ({
         title: 'Perfil',
         headerStyle: {
             backgroundColor: '#1cc3d9',
             elevation: 0,
         },
-        headerTintColor: '#fff'
-    }
+        headerTintColor: '#fff',
+        headerRight: (
+            <TouchableHighlight
+                style={{ marginRight: 10 }}
+                onPress={
+                    () => { navigation.navigate('Settings') }
+                }
+            >
+                <Image
+                    source={require('../resources/iphone/images/ic_settings_white.png')}
+                />
+            </TouchableHighlight>
+        )
+    })
 
     render() {
 
@@ -20,9 +32,24 @@ export default class Profile extends Component {
                     <View style={styles.userInfoPanel}>
 
                         <View style={styles.userInfoContainer}>
-                            <Image
-                                style={styles.userProfilePic}
-                                source={require('../resources/images/profilePic.jpg')}></Image>
+                            <TouchableHighlight
+                                onPress={
+                                    () => { this.props.navigation.navigate('EditProfile') }
+                                }
+                            >
+
+                                <View style={styles.profilePictureContainer}>
+                                    <View style={styles.editIconContainer}>
+                                        <Image
+                                            style={styles.editIcon}
+                                            source={require('../resources/icons/ic_edit.png')}
+                                        ></Image>
+                                    </View>
+                                    <Image
+                                        style={styles.userProfilePic}
+                                        source={require('../resources/images/profilePic.jpg')} />
+                                </View>
+                            </TouchableHighlight>
                             <View style={styles.userProfileText}>
                                 <Text style={styles.userProfileName}>Bruce Miller</Text>
                                 <Text style={styles.userProfileMoto}>I love cats!</Text>
@@ -206,5 +233,28 @@ const styles = StyleSheet.create({
     locationIcon: {
         maxHeight: 30,
         maxWidth: 30
+    },
+    profilePictureContainer: {
+
+    },
+    editIconContainer: {
+        backgroundColor: '#00BDD3',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 200,
+        height: 35,
+        width: 35,
+        position: 'absolute',
+        right: 0,
+        bottom: 0,
+        zIndex: 1
+    },
+    editIcon: {
+        height: 25,
+        width: 25,
+    },
+    rightIconStyle: {
+        marginRight: 10
     }
+
 });
